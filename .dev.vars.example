@@ -1,0 +1,52 @@
+# Local development secrets for `wrangler pages dev`.
+#
+# Copy to `.dev.vars` and fill in. `.dev.vars` is gitignored and must never be
+# committed. In production these same names are set in the Cloudflare dashboard
+# under Workers & Pages > your project > Settings > Variables and Secrets.
+#
+# Every value below is a placeholder. None of them are real credentials.
+
+# --- GitHub OAuth app (sign-in) -------------------------------------------
+# Create at https://github.com/settings/developers > OAuth Apps > New OAuth App
+#   Homepage URL:               http://localhost:8788
+#   Authorization callback URL: http://localhost:8788/api/auth/callback
+GITHUB_OAUTH_CLIENT_ID=Iv1.0000000000000000
+GITHUB_OAUTH_CLIENT_SECRET=replace-with-the-oauth-app-client-secret
+
+# --- Session signing ------------------------------------------------------
+# At least 32 characters of random data. Generate with:
+#   openssl rand -base64 48
+SESSION_SECRET=replace-with-at-least-32-random-characters-aaaaaaaa
+
+# Comma separated GitHub logins allowed into the studio. Case insensitive.
+ADMIN_GITHUB_LOGINS=your-github-username
+
+# Session lifetime in seconds. Optional. Default 28800 (8 hours), max 86400.
+# SESSION_TTL_SECONDS=28800
+
+# --- Repository the data file lives in ------------------------------------
+GITHUB_REPO_OWNER=your-github-username
+GITHUB_REPO_NAME=dcf-valuation-lab
+GITHUB_REPO_BRANCH=main
+DATA_FILE_PATH=public/data/valuations.json
+
+# --- Write credential: option A, GitHub App (preferred) -------------------
+# An installation token is minted per request and expires in an hour, so there
+# is no long-lived secret sitting in the dashboard.
+# The private key must be PKCS#8. Convert a downloaded PKCS#1 key with:
+#   openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt -in key.pem -out key-pkcs8.pem
+# Paste the PEM with literal \n between lines, or use the dashboard's
+# multi-line secret field.
+# GITHUB_APP_ID=123456
+# GITHUB_APP_INSTALLATION_ID=12345678
+# GITHUB_APP_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nMIIEv...\n-----END PRIVATE KEY-----\n"
+
+# --- Write credential: option B, fine-grained token ----------------------
+# Scope it to this one repository with Contents: Read and write, nothing else.
+# https://github.com/settings/personal-access-tokens/new
+GITHUB_DATA_TOKEN=github_pat_replace_me
+
+# --- Optional ------------------------------------------------------------
+# Canonical origin. Leave unset to use the incoming request's origin, which is
+# what you want on Pages preview deployments.
+# PUBLIC_SITE_ORIGIN=https://dcf-valuation-lab.pages.dev

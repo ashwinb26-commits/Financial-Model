@@ -1,0 +1,37 @@
+{
+  "name": "dcf-valuation-lab",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:functions": "wrangler pages dev --proxy 5173 -- npm run dev",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "preview:functions": "npm run build && wrangler pages dev dist",
+    "typecheck": "tsc -b --pretty",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "seed": "vite-node scripts/seed-valuations.ts",
+    "verify": "npm run typecheck && npm run test:run && npm run build"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250415.0",
+    "@types/node": "^22.13.1",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^3.2.4",
+    "typescript": "~5.6.3",
+    "vite": "^6.0.1",
+    "vite-node": "^3.2.4",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.14.4"
+  },
+  "description": "Interactive discounted cash flow valuation research site with a protected admin studio that publishes dated snapshots to GitHub."
+}

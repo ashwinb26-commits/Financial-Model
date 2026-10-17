@@ -1,0 +1,9 @@
+# Cloudflare Pages project configuration.
+#
+# Deployment itself is driven by the GitHub integration in the Cloudflare
+# dashboard, not by this file. It exists so `wrangler pages dev` knows the
+# build output directory and the compatibility date for the Functions runtime.
+
+name = "dcf-valuation-lab"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-04-01"
